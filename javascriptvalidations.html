@@ -1,0 +1,245 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<h1 class="text-white text-center font-weight-bold bg-success" style="font-size: 55px;"> Online Exam </h1>
+
+	<div class="container"><br>
+		
+		<div class="col-lg-6 m-auto d-block">
+			
+			<form action="#" onsubmit="return validation()" class="bg-light">
+
+                        <div class="form-group">
+					<label class="font-weight-bold"> First Name: </label>
+					<input type="text" name="funame" class="form-control" id="funame" autocomplete="off">
+					<span id="fname" class="text-danger font-weight-bold"> </span>
+				</div>
+				
+
+                       <div class="form-group">
+					<label class="font-weight-bold"> Last Name: </label>
+					<input type="text" name="laname" class="form-control" id="laname" autocomplete="off">
+					<span id="lname" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label for="user" class="font-weight-bold"> Username: </label>
+					<input type="text" name="user" class="form-control" id="user" autocomplete="off">
+					<span id="username" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label class="font-weight-bold"> Password: </label>
+					<input type="text" name="pass" class="form-control" id="pass" autocomplete="off">
+					<span id="passwords" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label class="font-weight-bold"> Confirm Password: </label>
+					<input type="text" name="conpass" class="form-control" id="conpass" autocomplete="off">
+					<span id="confrmpass" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label class="font-weight-bold"> Mobile Number: </label>
+					<input type="text" name="mobile" class="form-control" id="mobileNumber" onkeypress='return event.charCode>=48 && event.charCode<=57' autocomplete="off">
+					<span id="mobileno" class="text-danger font-weight-bold"> </span>
+				</div>
+
+
+                        <div class="form-group">
+                        <label class="font-weight-bold"> DOB: </label><br>
+                        <input type="date" id="demo">
+                        </div>
+       
+				<div class="form-group">
+					<label class="font-weight-bold"> Email: </label>
+					<input type="text" name="email" class="form-control" id="emails" autocomplete="off">
+					<span id="emailids" class="text-danger font-weight-bold"> </span>
+				</div>
+                        
+                        
+                        <input type="checkbox" name="checkbox" value="check"  >Please check to accept terms and conditions...<br>
+<input type="submit" name="email_submit" value="submit" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}"  />
+
+
+			</form><br><br>
+
+
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+		
+            
+  		function validation(){
+
+                  var firstname = document.getElementById('funame').value; 
+                  var lastname = document.getElementById('laname').value;  
+			var user = document.getElementById('user').value;
+			var pass = document.getElementById('pass').value;
+			var confirmpass = document.getElementById('conpass').value;
+			var mobileNumber = document.getElementById('mobileNumber').value;
+			var emails = document.getElementById('emails').value;
+
+                 var todayDate = new Date();
+      var month = todayDate.getMonth() + 1; 
+      var year = todayDate.getUTCFullYear() - 18; 
+      var tdate = todayDate.getDate(); 
+      if(month < 10){
+        month = "0" + month 
+      }
+      if(tdate < 10){
+        tdate = "0" + tdate;
+      }
+      var maxDate = year + "-" + month + "-" + tdate;
+      document.getElementById("demo").setAttribute("max", maxDate);
+      console.log(maxDate);
+
+
+                  if(firstname == ""){
+				document.getElementById('fname').innerHTML =" ** Please fill the First name field";
+				return false;
+			}
+			if((firstname.length <= 4) || (firstname.length > 20)) {
+				document.getElementById('fname').innerHTML =" ** First name length must be between 4 and 20";
+				return false;	
+			}
+			var str= /^[A-Za-z]+$/;
+                  if(firstname.match(str))
+                  true;
+                  else{
+                  document.getElementById('fname').innerHTML =" ** Only Alphabets allowed";
+				return false;
+                  }
+
+
+                  if(lastname == ""){
+				document.getElementById('lname').innerHTML =" ** Please fill the First name field";
+				return false;
+			}
+			if((lastname.length <= 4) || (lastname.length > 20)) {
+				document.getElementById('lname').innerHTML =" ** Last name length must be between 4 and 20";
+				return false;	
+			}
+			var str= /^[A-Za-z]+$/;
+                  if(lastname.match(str))
+                  true;
+                  else{
+                  document.getElementById('lname').innerHTML =" ** Only Alphabets allowed";
+				return false;
+                  }
+
+
+
+			if(user == ""){
+				document.getElementById('username').innerHTML =" ** Please fill the username field";
+				return false;
+			}
+			if((user.length <= 2) || (user.length > 20)) {
+				document.getElementById('username').innerHTML =" ** Username length must be between 2 and 20";
+				return false;	
+			}
+			if(!isNaN(user)){
+				document.getElementById('username').innerHTML =" ** only characters are allowed";
+				return false;
+			}
+                  var strws= /\s+/g;
+                  if(user.match(strws)){
+                  document.getElementById('username').innerHTML =" ** No blank spaces allowed";
+		      return false;
+                  }else{
+                  true;}
+
+                 
+
+
+
+			if(pass == ""){
+				document.getElementById('passwords').innerHTML =" ** Please fill the password field";
+				return false;
+			}
+			if((pass.length <= 8) || (pass.length > 20)) {
+				document.getElementById('passwords').innerHTML =" ** Passwords length must be between  8 and 20";
+				return false;	
+			}
+                  else if(pass.search(/[0-9]/)== -1) {
+                  document.getElementById('passwords').innerHTML =" ** Passwords must contain 1 numeric value";
+				return false;	
+			}
+                   else if(pass.search(/[a-z]/)== -1) {
+                  document.getElementById('passwords').innerHTML =" ** Passwords must contain lower case letter";
+				return false;	
+			}
+                  else if(pass.search(/[A-Z]/)== -1) {
+                  document.getElementById('passwords').innerHTML =" ** Passwords must contain upper case letter";
+				return false;	
+			}
+                  
+
+
+			if(pass!=confirmpass){
+				document.getElementById('confrmpass').innerHTML =" ** Password does not match the confirm password";
+				return false;
+			}
+
+
+
+			if(confirmpass == ""){
+				document.getElementById('confrmpass').innerHTML =" ** Please fill the confirmpassword field";
+				return false;
+			}
+
+
+
+
+			if(mobileNumber == ""){
+				document.getElementById('mobileno').innerHTML =" ** Please fill the mobile Number field";
+				return false;
+			}
+			if(isNaN(mobileNumber)){
+				document.getElementById('mobileno').innerHTML =" ** user must write digits only not characters";
+				return false;
+			}
+			if(mobileNumber.length!=10){
+				document.getElementById('mobileno').innerHTML =" ** Mobile Number must be 10 digits only";
+				return false;
+			}
+
+
+
+			if(emails == ""){
+				document.getElementById('emailids').innerHTML =" ** Please fill the email id field";
+				return false;
+			}
+			if(emails.indexOf('@') <= 0 ){
+				document.getElementById('emailids').innerHTML =" ** @ Invalid Position";
+				return false;
+			}
+
+			if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+				document.getElementById('emailids').innerHTML =" ** . Invalid Position";
+				return false;
+			}
+
+                  if(!this.form.checkbox.checked)
+{
+    alert('You must agree to the terms first.');
+    return false;
+}
+                  
+                  
+
+
+		}
+
+	</script>
+
+</body>
+</html>
